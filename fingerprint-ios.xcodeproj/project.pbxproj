@@ -12,6 +12,9 @@
 		F80CE9DB2046D3C900BB035F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80CE9D92046D3C900BB035F /* Main.storyboard */; };
 		F80CE9DD2046D3C900BB035F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F80CE9DC2046D3C900BB035F /* Assets.xcassets */; };
 		F80CE9E02046D3C900BB035F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80CE9DE2046D3C900BB035F /* LaunchScreen.storyboard */; };
+		F80CE9E92046D42100BB035F /* libfingerprint.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80CE9E82046D42100BB035F /* libfingerprint.a */; };
+		F80CE9EB2046D43600BB035F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = F80CE9EA2046D43600BB035F /* libresolv.tbd */; };
+		F80CE9F12046D87200BB035F /* RustGreeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80CE9F02046D87200BB035F /* RustGreeting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,11 @@
 		F80CE9DC2046D3C900BB035F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F80CE9DF2046D3C900BB035F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F80CE9E12046D3C900BB035F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F80CE9E82046D42100BB035F /* libfingerprint.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfingerprint.a; path = ../rust/fingerprint/target/universal/release/libfingerprint.a; sourceTree = "<group>"; };
+		F80CE9EA2046D43600BB035F /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		F80CE9EC2046D46B00BB035F /* Fingerprint-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fingerprint-Bridging-Header.h"; sourceTree = "<group>"; };
+		F80CE9ED2046D82600BB035F /* fingerprint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fingerprint.h; path = ../../rust/fingerprint/src/fingerprint.h; sourceTree = "<group>"; };
+		F80CE9F02046D87200BB035F /* RustGreeting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RustGreeting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F80CE9EB2046D43600BB035F /* libresolv.tbd in Frameworks */,
+				F80CE9E92046D42100BB035F /* libfingerprint.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +50,7 @@
 			children = (
 				F80CE9D42046D3C900BB035F /* fingerprint-ios */,
 				F80CE9D32046D3C900BB035F /* Products */,
+				F80CE9E72046D42100BB035F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +65,9 @@
 		F80CE9D42046D3C900BB035F /* fingerprint-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F80CE9F02046D87200BB035F /* RustGreeting.swift */,
+				F80CE9EC2046D46B00BB035F /* Fingerprint-Bridging-Header.h */,
+				F80CE9ED2046D82600BB035F /* fingerprint.h */,
 				F80CE9D52046D3C900BB035F /* AppDelegate.swift */,
 				F80CE9D72046D3C900BB035F /* ViewController.swift */,
 				F80CE9D92046D3C900BB035F /* Main.storyboard */,
@@ -62,6 +76,15 @@
 				F80CE9E12046D3C900BB035F /* Info.plist */,
 			);
 			path = "fingerprint-ios";
+			sourceTree = "<group>";
+		};
+		F80CE9E72046D42100BB035F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F80CE9EA2046D43600BB035F /* libresolv.tbd */,
+				F80CE9E82046D42100BB035F /* libfingerprint.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +161,7 @@
 			files = (
 				F80CE9D82046D3C900BB035F /* ViewController.swift in Sources */,
 				F80CE9D62046D3C900BB035F /* AppDelegate.swift in Sources */,
+				F80CE9F12046D87200BB035F /* RustGreeting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,10 +300,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6K3L896BM;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "fingerprint-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = /Users/donnie/projects/rust/fingerprint/target/universal/release;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.donniemattingly.fingerprint-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(PROJECT_DIR)/fingerprint-ios/Fingerprint-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -291,10 +318,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6K3L896BM;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "fingerprint-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = /Users/donnie/projects/rust/fingerprint/target/universal/release;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.donniemattingly.fingerprint-ios";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(PROJECT_DIR)/fingerprint-ios/Fingerprint-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
