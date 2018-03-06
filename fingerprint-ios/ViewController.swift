@@ -23,7 +23,8 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
         super.viewDidLoad()
         
         let rustGreetings = RustGreetings()
-        print("\(rustGreetings.sayHello(to: " world"))")
+//        print("\(rustGreetings.sayHello(to: " world"))")
+        rustGreetings.calculateHashes();
         // Do any additional setup after loading the view, typically from a nib.
         
         recordingSession = AVAudioSession.sharedInstance()
@@ -74,11 +75,12 @@ class ViewController: UIViewController, AVAudioRecorderDelegate {
     
     @IBAction func recordPressed(_ sender: UIButton) {
         print("Button presssed")
-        if !recording {
-            startRecording()
-        } else {
-            finishRecording(success: true)
-        }
+        
+//        if !recording {
+//            startRecording()
+//        } else {
+//            finishRecording(success: true)
+//        }
     }
     
     func getDocumentsDirectory() -> URL {
